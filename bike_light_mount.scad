@@ -10,8 +10,19 @@ post_height=30;
 post_r=cup_trans_r;
 end_cap_r=beam_r*1.2;
 end_cap_len=5;
+through_hole_r=4;
 
-cylinder(h=cup_height, r=cup_r, center=false);
+color("green") {
+    difference() {
+        cylinder(h=cup_height, r=cup_r, center=false);
+        translate([0, (cup_r*-.98)+(2*through_hole_r), cup_height*.9]) {
+            rotate([0, 90, 0]){
+                cylinder(h=3*cup_r, r=through_hole_r, center=true);
+            }
+        }
+    }
+}
+
 translate([0, 0, cup_height-delta]) {
     cylinder(h=cup_trans_h+delta, r1=cup_r, r2=cup_trans_r, center=false);
 }
